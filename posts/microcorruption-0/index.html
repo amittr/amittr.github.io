@@ -26,13 +26,13 @@
 <meta name="twitter:description" content="µcorruption guide In this post and the next posts, I&rsquo;ll try to write companion guide for you when you&rsquo;re solving the µcorruption CTF.
 You can open µcorruption here. You&rsquo;ll need to create an account to play.
 Prerequisite knowledge I assume you, the reader, are already familiar with these subjects:
- Basic understanding of computer architecture What a CPU is What are instructions What is RAM What is input-output Basic understanding of debuggers What are registers  If you are unfamiliar with some of these subjects, don&rsquo;t worry!"/>
+ Basic understanding of computer architecture What a CPU is What are CPU instructions What are CPU registers What is RAM What is input-output Basic understanding of debuggers  If you are unfamiliar with some of these subjects, don&rsquo;t worry!"/>
 
     <meta property="og:title" content="Microcorruption Guide #0 - New Orleans" />
 <meta property="og:description" content="µcorruption guide In this post and the next posts, I&rsquo;ll try to write companion guide for you when you&rsquo;re solving the µcorruption CTF.
 You can open µcorruption here. You&rsquo;ll need to create an account to play.
 Prerequisite knowledge I assume you, the reader, are already familiar with these subjects:
- Basic understanding of computer architecture What a CPU is What are instructions What is RAM What is input-output Basic understanding of debuggers What are registers  If you are unfamiliar with some of these subjects, don&rsquo;t worry!" />
+ Basic understanding of computer architecture What a CPU is What are CPU instructions What are CPU registers What is RAM What is input-output Basic understanding of debuggers  If you are unfamiliar with some of these subjects, don&rsquo;t worry!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.trivizki.dev/posts/microcorruption-0/" /><meta property="og:image" content="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-2000w,f_auto,q_auto:best/newscms/2018_27/1351202/travel-guide-new-orleans-french-quarter-today-180706-main-art.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-17T11:36:09+03:00" />
@@ -106,11 +106,11 @@ need to create an account to play.</p>
 <ul>
 <li>Basic understanding of computer architecture</li>
 <li>What a CPU is</li>
-<li>What are instructions</li>
+<li>What are CPU instructions</li>
+<li>What are CPU registers</li>
 <li>What is RAM</li>
 <li>What is input-output</li>
 <li>Basic understanding of debuggers</li>
-<li>What are registers</li>
 </ul>
 <p>If you are unfamiliar with some of these subjects, don&rsquo;t worry! Playing
 µcorruption is a good way to learn about them.</p>
@@ -132,12 +132,13 @@ and nothing interesting is going on here, let&rsquo;s move on then.</p>
 4488:  ff40 3d00 0100 mov.b	#0x3d, 0x1(r15)
 448e:  ff40 4200 0200 mov.b	#0x42, 0x2(r15)
 ...
-</code></pre><p><code>create_password</code> doesn&rsquo;t contains any <code>cmp</code> instructions, so we can&rsquo;t have
-any impact on this function&rsquo;s flow. Let&rsquo;s move on!</p>
+</code></pre><p><code>create_password</code> writes some data to memory byte after byte using <code>mov.b</code>
+(remember this for later!) but doesn&rsquo;t contain any <code>cmp</code> instructions,
+so we can&rsquo;t have any impact on this function&rsquo;s flow. Let&rsquo;s move on!</p>
+<h2 id="TIP"></h2>
 <blockquote>
-<p><em>Please notice that the password is randomized (probably by the User ID or
-something). So you will have to find the password from your session - the
-screenshots here won&rsquo;t work for you.</em></p>
+<p><em>Please notice that the byte sequence is randomized (probably by the User ID or
+something). The screenshots here won&rsquo;t be the same for you.</em></p>
 </blockquote>
 <figure><img src="/images/0-create-pass-1.png"
          alt="This create_password is from my computer."/><figcaption>
@@ -173,10 +174,13 @@ For now, we can assume that our gut feeling about program flow will be just righ
 </blockquote>
 <p>By exploring this instruction&rsquo;s parameters we can understand that this part
 of the function compares between our input and the memory that placed in <code>0x2400</code>.
-At this point we can just gamble that if we input the string from <code>0x2400</code>
-somthing good will happen. Another insight we can glean from the other <code>cmp</code>
+At this point we can just gamble that if we input the string starts from <code>0x2400</code> address
+somthing good will happen.
+Another insight we can glean to strengthen our feeling from the other <code>cmp</code>
 instruction that exists in the function is about the compared string length.</p>
-<p>Find out what is the string in ASCII format that was generated for your user
+<p>Find out what is the string in ASCII format that was generated <a href="#TIP">for your user.</a>
+It turn out that the compared string here is the same one was written by <code>create_password</code>
+previously. You can extract the string value from the <em>Live Memory Dump</em>
 (remember, it&rsquo;s at memory address <code>0x2400</code>). Use it as the lock&rsquo;s input.</p>
 <p>Congrats!</p>
 

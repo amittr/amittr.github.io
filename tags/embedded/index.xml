@@ -16,7 +16,7 @@
       <description>µcorruption guide In this post and the next posts, I&amp;rsquo;ll try to write companion guide for you when you&amp;rsquo;re solving the µcorruption CTF.
 You can open µcorruption here. You&amp;rsquo;ll need to create an account to play.
 Prerequisite knowledge I assume you, the reader, are already familiar with these subjects:
- Basic understanding of computer architecture What a CPU is What are instructions What is RAM What is input-output Basic understanding of debuggers What are registers  If you are unfamiliar with some of these subjects, don&amp;rsquo;t worry!</description>
+ Basic understanding of computer architecture What a CPU is What are CPU instructions What are CPU registers What is RAM What is input-output Basic understanding of debuggers  If you are unfamiliar with some of these subjects, don&amp;rsquo;t worry!</description>
     </item>
     
   </channel>
