@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Microcorruption Guide #0 - New Orleans // trivizki.dev</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Amit Trivizki" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://www.trivizki.dev/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-2000w,f_auto,q_auto:best/newscms/2018_27/1351202/travel-guide-new-orleans-french-quarter-today-180706-main-art.jpg"/>
+
+<meta name="twitter:title" content="Microcorruption Guide #0 - New Orleans"/>
+<meta name="twitter:description" content="µcorruption guide In this post and the next posts, I&rsquo;ll try to write companion guide for you when you&rsquo;re solving the µcorruption CTF.
+You can open µcorruption here. You&rsquo;ll need to create an account to play.
+Prerequisite knowledge I assume you, the reader, are already familiar with these subjects:
+ Basic understanding of computer architecture What a CPU is What are instructions What is RAM What is input-output Basic understanding of debuggers What are registers  If you are unfamiliar with some of these subjects, don&rsquo;t worry!"/>
+
+    <meta property="og:title" content="Microcorruption Guide #0 - New Orleans" />
+<meta property="og:description" content="µcorruption guide In this post and the next posts, I&rsquo;ll try to write companion guide for you when you&rsquo;re solving the µcorruption CTF.
+You can open µcorruption here. You&rsquo;ll need to create an account to play.
+Prerequisite knowledge I assume you, the reader, are already familiar with these subjects:
+ Basic understanding of computer architecture What a CPU is What are instructions What is RAM What is input-output Basic understanding of debuggers What are registers  If you are unfamiliar with some of these subjects, don&rsquo;t worry!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.trivizki.dev/posts/microcorruption-0/" /><meta property="og:image" content="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-2000w,f_auto,q_auto:best/newscms/2018_27/1351202/travel-guide-new-orleans-french-quarter-today-180706-main-art.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-17T11:36:09+03:00" />
+<meta property="article:modified_time" content="2021-07-17T11:36:09+03:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://www.trivizki.dev/"><img class="app-header-avatar" src="/images/avatar.png" alt="Amit Trivizki" /></a>
+      <h1>trivizki.dev</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>Welcome to my blog. Here I&#39;ll write about technical things that I find intresting.</p>
+      <div class="app-header-social">
+        
+          <a href="https://www.linkedin.com/in/amit-trivizki/" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>My LinkedIn</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Microcorruption Guide #0 - New Orleans</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jul 17, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://www.trivizki.dev/tags/ctf/">ctf</a>
+              <a class="tag" href="https://www.trivizki.dev/tags/embedded/">embedded</a>
+              <a class="tag" href="https://www.trivizki.dev/tags/writeup/">writeup</a>
+              <a class="tag" href="https://www.trivizki.dev/tags/microcorruption/">microcorruption</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h2 id="µcorruption-guide">µcorruption guide</h2>
+<p>In this post and the next posts, I&rsquo;ll try to write companion guide for
+you when you&rsquo;re solving the µcorruption CTF.</p>
+<p><a href="https://microcorruption.com/">You can open µcorruption here</a>. You&rsquo;ll
+need to create an account to play.</p>
+<h3 id="prerequisite-knowledge">Prerequisite knowledge</h3>
+<p>I assume you, the reader, are already familiar with these subjects:</p>
+<ul>
+<li>Basic understanding of computer architecture</li>
+<li>What a CPU is</li>
+<li>What are instructions</li>
+<li>What is RAM</li>
+<li>What is input-output</li>
+<li>Basic understanding of debuggers</li>
+<li>What are registers</li>
+</ul>
+<p>If you are unfamiliar with some of these subjects, don&rsquo;t worry! Playing
+µcorruption is a good way to learn about them.</p>
+<p>After you play the tutorial, we can start with&hellip;</p>
+<h2 id="new-orleans">New Orleans</h2>
+<p>Let&rsquo;s start by going over the main functions: <code>main</code>, <code>create_password</code>, <code>get_password</code>, and <code>check_password</code>.</p>
+<h3 id="get_password">get_password</h3>
+<pre><code>44b2 &lt;get_password&gt;
+44b2:  3e40 6400      mov	#0x64, r14
+44b6:  b012 8445      call	#0x4584 &lt;getsn&gt;
+44ba:  3041           ret
+</code></pre><p>First, it looks like all <code>get_password</code> is really doing is getting a string from the user,
+and nothing interesting is going on here, let&rsquo;s move on then.</p>
+<p>In the next step we want the understand where the magic happens.</p>
+<h3 id="create_password">create_password</h3>
+<pre><code>447e &lt;create_password&gt;
+447e:  3f40 0024      mov	#0x2400, r15
+4482:  ff40 5f00 0000 mov.b	#0x5f, 0x0(r15)
+4488:  ff40 3d00 0100 mov.b	#0x3d, 0x1(r15)
+448e:  ff40 4200 0200 mov.b	#0x42, 0x2(r15)
+...
+</code></pre><p><code>create_password</code> doesn&rsquo;t contains any <code>cmp</code> instructions, so we can&rsquo;t have
+any impact on this function&rsquo;s flow. Let&rsquo;s move on!</p>
+<blockquote>
+<p><em>Please notice that the password is randomized (probably by the User ID or
+something). So you will have to find the password from your session - the
+screenshots here won&rsquo;t work for you.</em></p>
+</blockquote>
+<figure><img src="/images/0-create-pass-1.png"
+         alt="This create_password is from my computer."/><figcaption>
+            <p>This <code>create_password</code> is from my computer.</p>
+        </figcaption>
+</figure>
+
+<figure><img src="/images/0-create-pass-2.jpeg"
+         alt="This create_password is from another computer."/><figcaption>
+            <p>This <code>create_password</code> is from another computer.</p>
+        </figcaption>
+</figure>
+
+<h3 id="check_password">check_password</h3>
+<pre><code>44bc &lt;check_password&gt;
+44bc:  0e43           clr	r14
+44be:  0d4f           mov	r15, r13
+44c0:  0d5e           add	r14, r13
+44c2:  ee9d 0024      cmp.b	@r13, 0x2400(r14)
+44c6:  0520           jne	#0x44d2 &lt;check_password+0x16&gt;
+44c8:  1e53           inc	r14
+44ca:  3e92           cmp	#0x8, r14
+...
+</code></pre><p>Place a breakpoint at the beginning of the <code>check_password</code> function by
+running <code>break check_password</code>, then run the debugger with <code>continue</code>.
+After a couple of instructions we got to the first <code>cmp.b</code> instruction.</p>
+<blockquote>
+<p><em>Tip -  Don&rsquo;t bother yourself with deep understanding about the <code>sr</code>
+register state and how the <code>jmp</code> instructions handle it. In short,
+every <code>cmp</code> and similar instructions are changing the <code>sr</code> register, and every
+<code>jne</code> instruction and similar instructions decide what to do based on the <code>sr</code> register state.
+For now, we can assume that our gut feeling about program flow will be just right.</em></p>
+</blockquote>
+<p>By exploring this instruction&rsquo;s parameters we can understand that this part
+of the function compares between our input and the memory that placed in <code>0x2400</code>.
+At this point we can just gamble that if we input the string from <code>0x2400</code>
+somthing good will happen. Another insight we can glean from the other <code>cmp</code>
+instruction that exists in the function is about the compared string length.</p>
+<p>Find out what is the string in ASCII format that was generated for your user
+(remember, it&rsquo;s at memory address <code>0x2400</code>). Use it as the lock&rsquo;s input.</p>
+<p>Congrats!</p>
+
+
+<blockquote class="twitter-tweet" data-conversation="none" data-theme="dark"><p lang="en" dir="ltr">First lock (New Orleans) done🔓 <a href="https://t.co/0VDvuVX1fj">pic.twitter.com/0VDvuVX1fj</a></p>&mdash; Shay Nehmad (@ShayNehmad) <a href="https://twitter.com/ShayNehmad/status/1416325846198009861?ref_src=twsrc%5Etfw">July 17, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<h2 id="summary">Summary</h2>
+<p>I would recommend you to try the next two levels by yourself. Those levels can
+be solved using the same simple techniques we used in this level.</p>
+<p>In the next posts we will continue the guide from the level named <strong>Reykjavik</strong>.</p>
+<figure><img src="/images/reykjavik.jpeg"/>
+</figure>
+
+<p>Good luck! :)</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

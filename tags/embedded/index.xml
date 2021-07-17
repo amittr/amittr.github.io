@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>trivizki.dev</title>
-    <link>https://www.trivizki.dev/</link>
-    <description>Recent content on trivizki.dev</description>
+    <title>embedded on trivizki.dev</title>
+    <link>https://www.trivizki.dev/tags/embedded/</link>
+    <description>Recent content in embedded on trivizki.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Jul 2021 11:36:09 +0300</lastBuildDate><atom:link href="https://www.trivizki.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jul 2021 11:36:09 +0300</lastBuildDate><atom:link href="https://www.trivizki.dev/tags/embedded/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microcorruption Guide #0 - New Orleans</title>
       <link>https://www.trivizki.dev/posts/microcorruption-0/</link>
